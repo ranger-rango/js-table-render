@@ -18,6 +18,7 @@ function renderTable(tableCols, tableData)
     tHead.appendChild(headerRow);
 
     const tBody = document.querySelector(".tableBody");
+    tBody.innerHTML = ``;
     tableData.forEach(row => 
     {
         const tableRow = document.createElement("tr");
@@ -104,4 +105,39 @@ async function main(pageSize = 5, currentPage = 0, filter = [], sort = [])
     renderTable(tableCols, tableData);
 }
 
-main(5, 0, [], []);
+let currentPage = 0;
+let pageSize = 5;
+let currentFilter = [];
+let currentSort = [];
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("nextBtn").addEventListener("click", () => {
+        currentPage++;
+        main(pageSize, currentPage, currentFilter, currentSort);
+    });
+
+    document.getElementById("prevBtn").addEventListener("click", () => {
+        if (currentPage > 0) {
+            currentPage--;
+            main(pageSize, currentPage, currentFilter, currentSort);
+        }
+    });
+
+    document.getElementById("filterSortForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const filterField = document.getElementById("filterField").value;
+        const filterValue = document.getElementById("filterValue").value.trim();
+        const sortField = document.getElementById("sortField").value;
+        const sortDir = document.getElementById("sortDir").value;
+
+        currentFilter = filterField && filterValue ? [filterField, filterValue] : [];
+        currentSort = sortField ? [sortField, sortDir] : [];
+
+        currentPage = 0;
+        main(pageSize, currentPage, currentFilter, currentSort);
+    });
+
+    main(pageSize, currentPage, currentFilter, currentSort);
+});
+
+// main(5, 0, [], []);

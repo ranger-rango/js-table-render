@@ -8,9 +8,50 @@
         <title>Document</title>
     </head>
     <body>
+        <form id="filterSortForm">
+            <label>
+                Filter Field:
+                <select id="filterField">
+                    <option value="">-- none --</option>
+                    <option value="FirstName">FirstName</option>
+                    <option value="LastName">LastName</option>
+                    <option value="Gender">Gender</option>
+                </select>
+            </label>
+            <label>
+                Filter Value:
+                <input type="text" id="filterValue" placeholder="e.g. Russell">
+            </label>
+
+            <label>
+                Sort Field:
+                <select id="sortField">
+                    <option value="">-- none --</option>
+                    <option value="FirstName">FirstName</option>
+                    <option value="LastName">LastName</option>
+                    <option value="Gender">Gender</option>
+                </select>
+            </label>
+            <label>
+                Direction:
+                <select id="sortDir">
+                    <option value="asc">ASC</option>
+                    <option value="desc">DESC</option>
+                </select>
+            </label>
+
+            <button type="submit">Apply</button>
+        </form>
+
         <table>
             <thead class="tableHead"></thead>
             <tbody class="tableBody"></tbody>
         </table>
+
+        <div>
+            <button id="prevBtn">Prev</button>
+            <span id="pageInfo"></span>
+            <button id="nextBtn">Next</button>
+        </div>
     </body>
 </html>
