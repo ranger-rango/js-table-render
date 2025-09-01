@@ -3,6 +3,7 @@ function renderTable(tableCols, tableData)
     const tHead = document.querySelector(".tableHead");
     tHead.innerHTML = ``;
     const headerRow = document.createElement("tr");
+    headerRow.className = "rowHeader";
 
     tableCols.forEach(col => 
     {
@@ -11,7 +12,6 @@ function renderTable(tableCols, tableData)
         {
             th = document.createElement("th");
             th.innerText = col.columnName;
-
             headerRow.appendChild(th);
         }
     });
@@ -32,8 +32,6 @@ function renderTable(tableCols, tableData)
         });
         tBody.appendChild(tableRow);
     });
-
-
 }
 
 function fetchData(url)
@@ -48,8 +46,6 @@ function fetchData(url)
         return response.json();
     });
 }
-
-
 
 async function main(pageSize = 5, currentPage = 0, filter = [], sort = [])
 {
@@ -79,7 +75,7 @@ async function main(pageSize = 5, currentPage = 0, filter = [], sort = [])
         {
             "id" : 'middle_name',
             "columnName" : "MiddleName",
-            "hide" : true
+            "hide" : false
         },
         {
             "id" : 'gender',
@@ -89,7 +85,7 @@ async function main(pageSize = 5, currentPage = 0, filter = [], sort = [])
         {
             "id" : 'age',
             "columnName" : "Age",
-            "hide" : true
+            "hide" : false
         }
     ];
 
